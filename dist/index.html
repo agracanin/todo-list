@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="overlay hidden" id="createModal">
+        <div class="create-modal">
+            <header class="form-header">
+                <div class="form-header-content">
+                    <h2>Create a new....</h2>
+                    <h2 class="close-form">X</h2>
+            </header>
+            <div class="modal-content">
+                <nav class="modal-sidebar">
+                    <li class="modal-item"><span id="task-tab" data-type="task">Task</span></li>
+                    <li class="modal-item"><span id="project-tab" data-type="project">Project</span></li>
+                </nav>
+
+                <div class="form-container">
+                    <!-- <form class="create-form" id="create-form">
+                        <textarea name="new-task" id="task-name" maxlength="40" placeholder="Task Name (ex: Clean home)"
+                            required></textarea>
+                        <textarea class="description-textarea" name="new-task" id="task-name" maxlength="240"
+                            placeholder="Description (ex: Pick up dirty laundry and mop floors)" required></textarea>
+
+                        <div class="bottom-form">
+                            <div class="date-input-container">
+                                <label class="date-label" for="date-input">Due Date:</label>
+                                <input type="date" class="date">
+                            </div>
+
+                            <button class="submit-btn">Create Task</button>
+                        </div>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <header class="main-header">
+            <h1>Todo</h1>
+        </header>
+
+        <nav class="sidebar">
+
+            <ul class="nav">
+                <li class="nav-item"><span>Home</span><span class="counter home">1</span></li>
+                <li class="nav-item"><span class="">Today</span><span class="counter daily">0</span></li>
+                <li class="nav-item" id=""><span class="">Week</span><span class="counter weekly">0</span>
+                </li>
+                <li>
+                    <span>Projects</span>
+                    <ul class="projects">
+                        <li class="project"><span class="">Work</span><span class="counter project-counter">1</span>
+                        </li>
+                        <li class="project"><span class="">Gym</span><span class="counter project-counter">3</span></li>
+                        <li class="project"><span class="">Study</span><span class="counter project-counter">2</span>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+
+            <div class="new-project-container"><span class="new-project">+</span></div>
+
+
+        </nav>
+
+        <main>
+            <div class="today-tasks">
+                <h2 class="title">Today</h2>
+                <div class="todo-container">
+                    <span class="task-title">Wash dishes</span>
+                    <div class="task-info">
+                        <span class="date">July 30th</span>
+                        <div class="icons">
+                            <span>X</span>
+                            <span>O</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

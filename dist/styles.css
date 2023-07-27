@@ -144,8 +144,13 @@ li {
     color: var(--background-color);
 }
 
-.active-item {
+.active-item,
+.active-nav-item {
     color: var(--background-color);
+}
+
+.project-container {
+    margin-top: 1rem;
 }
 
 main {

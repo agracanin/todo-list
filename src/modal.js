@@ -52,16 +52,18 @@ function createTaskForm() {
 
         const title = taskTitle.value;
         const description = taskDescription.value;
-        const dueDate = dueDate.value;
+        const dueDate = dateInput.value;
+        const project = document.querySelector('.active-nav-item').textContent;
 
         const newTask = new Task(title, description, dueDate);
+        project.addTask(newTask);
 
-        const projectToAddTo = toDoList.getProjects()[0];
-        projectToAddTo.addTask(newTask);
 
         taskTitle.value = '';
         taskDescription.value = '';
         dateInput.value = '';
+
+        renderTasks(project);
     });
 
     bottomForm.appendChild(submitBtn);
@@ -84,7 +86,13 @@ function createProjectForm() {
     const submitBtn = document.createElement('button');
     submitBtn.classList.add('submit-btn');
     submitBtn.textContent = "Create Project";
-    submitBtn.addEventListener('click', () => { return });
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        toDoList.addProject(taskTitle.value);
+        taskTitle.value = "";
+        renderProjects();
+    });
     form.appendChild(taskTitle);
     form.appendChild(submitBtn);
 
@@ -104,19 +112,79 @@ function loadForm(type) {
 function selectTab(event) {
     const taskTab = document.querySelector('#task-tab');
     const projectTab = document.querySelector('#project-tab');
-    taskTab.classList.remove('active-item');
-    projectTab.classList.remove('active-item');
+    taskTab.classList.remove('active-nav-item');
+    projectTab.classList.remove('active-nav-item');
 
-    event.currentTarget.classList.add('active-item');
+    event.currentTarget.classList.add('active-nav-item');
 
     loadForm(event.currentTarget.dataset.type);
 }
 
+function renderProjects() {
+
+    const projectContainer = document.querySelector('#projects');
+
+    projectContainer.innerHTML = "";
+
+    for (let i = 3; i < toDoList.projects.length; i++) {
+        const projectLabel = document.createElement('li');
+        projectLabel.classList.add('project', 'nav-item-toggler');
+
+        const projectSpan = document.createElement('span');
+        projectSpan.textContent = toDoList.projects[i].name;
+
+        projectLabel.appendChild(projectSpan);
+        projectContainer.appendChild(projectLabel);
+    }
+}
+
+function renderTasks(project) {
+    const tasksContainer = document.querySelector('.today-tasks');  // replace '.tasks-container' with the actual selector for your tasks container
+    tasksContainer.innerHTML = '';
+
+    project.getTasks().forEach(task => {
+        const todoContainer = document.createElement('div');
+        todoContainer.classList.add('todo-container');
+
+        const taskTitle = document.createElement('span');
+        taskTitle.classList.add('task-title');
+        taskTitle.textContent = task.getName();
+        todoContainer.appendChild(taskTitle);
+
+        const taskInfo = document.createElement('div');
+        taskInfo.classList.add('task-info');
+
+        const date = document.createElement('span');
+        date.classList.add('date');
+        date.textContent = task.getDate();
+        taskInfo.appendChild(date);
+
+        const icons = document.createElement('div');
+        icons.classList.add('icons');
+
+        const deleteIcon = document.createElement('span');
+        deleteIcon.textContent = 'X';
+
+        const completeIcon = document.createElement('span');
+        completeIcon.textContent = 'O';
+
+        icons.appendChild(deleteIcon);
+        icons.appendChild(completeIcon);
+
+        taskInfo.appendChild(icons);
+
+        todoContainer.appendChild(taskInfo);
+
+        tasksContainer.appendChild(todoContainer);
+    });
+}
+
+
 export default function openModal() {
     const taskTab = document.querySelector('#task-tab');
     const projectTab = document.querySelector('#project-tab');
-    taskTab.classList.remove('active-item');
-    projectTab.classList.remove('active-item');
+    taskTab.classList.remove('active-nav-item');
+    projectTab.classList.remove('active-nav-item');
     const modal = document.querySelector('#createModal');
     modal.classList.remove('hidden');
 
@@ -125,7 +193,7 @@ export default function openModal() {
 
     loadForm('task');
 
-    taskTab.classList.add('active-item');
+    taskTab.classList.add('active-nav-item');
 
     taskTab.addEventListener('click', selectTab);
     projectTab.addEventListener('click', selectTab);

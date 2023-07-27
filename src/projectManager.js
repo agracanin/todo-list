@@ -5,8 +5,6 @@ export default class projectManager {
     constructor() {
         this.projects = [];
         this.projects.push(new Project('Home'));
-        this.projects.push(new Project('Today'));
-        this.projects.push(new Project('Week'));
     }
 
     setProjects(projects) {

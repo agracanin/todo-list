@@ -52,17 +52,18 @@
         <nav class="sidebar">
 
             <ul class="nav">
-                <li class="nav-item"><span>Home</span><span class="counter home">1</span></li>
-                <li class="nav-item"><span class="">Today</span><span class="counter daily">0</span></li>
-                <li class="nav-item" id=""><span class="">Week</span><span class="counter weekly">0</span>
-                </li>
-                <li>
+                <li class="nav-item home nav-item-toggler" id="home"><span>Home</span><span
+                        class="counter home">1</span></li>
+                <li id="projectList" class="project-container">
                     <span>Projects</span>
-                    <ul class="projects">
-                        <li class="project"><span class="">Work</span><span class="counter project-counter">1</span>
+                    <ul class="projects" id="projects">
+                        <li class="project nav-item-toggler"><span class="">Work</span><span
+                                class="counter project-counter">1</span>
                         </li>
-                        <li class="project"><span class="">Gym</span><span class="counter project-counter">3</span></li>
-                        <li class="project"><span class="">Study</span><span class="counter project-counter">2</span>
+                        <li class="project nav-item-toggler"><span class="">Gym</span><span
+                                class="counter project-counter">3</span></li>
+                        <li class="project nav-item-toggler"><span class="">Study</span><span
+                                class="counter project-counter">2</span>
                         </li>
                     </ul>
 
@@ -75,8 +76,8 @@
         </nav>
 
         <main>
-            <div class="today-tasks">
-                <h2 class="title">Today</h2>
+            <div class="tasks-container">
+                <h2 class="title">Coming up</h2>
                 <div class="todo-container">
                     <span class="task-title">Wash dishes</span>
                     <div class="task-info">
